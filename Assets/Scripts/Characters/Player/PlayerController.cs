@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animationController = GetComponent<PlayerAnimationsController>();
         playerRotaion = new Vector3(0, 0, 0);
+        IsGrounded = true;
     }
 
     private void Update()
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector2(rb.velocity.x, player.jumpHeight);
         // rb.AddForce(new Vector2(rb.velocity.x, player.jumpHeight), ForceMode2D.Impulse);
-        IsGrounded = false;
+        // IsGrounded = false;
     }
 
     public void Dash()
@@ -112,11 +113,19 @@ public class PlayerController : MonoBehaviour
         animationController.EffectAttackAnimation();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             IsGrounded = true;
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            IsGrounded = false;
         }
     }
 }
