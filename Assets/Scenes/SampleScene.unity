@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 347233802}
   - component: {fileID: 347233804}
   - component: {fileID: 347233805}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -69396,6 +69396,7 @@ GameObject:
   - component: {fileID: 409405654}
   - component: {fileID: 409405659}
   - component: {fileID: 409405660}
+  - component: {fileID: 409405661}
   m_Layer: 0
   m_Name: Mashroom
   m_TagString: Untagged
@@ -69544,14 +69545,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409405653}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 95, y: -11.5, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1122820865}
+  - {fileID: 919565248}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &409405659
 Rigidbody2D:
   serializedVersion: 4
@@ -69593,12 +69595,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightSideDetectionRange: 5
   leftSideDetectionRange: 5
-  bottomSideDetectionRange: 5
   rightPlayerDetectionRange: 15
   leftPlayerDetectionRange: 15
-  groundLayer:
+  sidesLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
+  edgeDetection: {fileID: 919565248}
+  smoothTime: 0.1
+--- !u!114 &409405661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409405653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a56436647e1e048a2f288c96fff10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &442817565
 GameObject:
   m_ObjectHideFlags: 0
@@ -69734,7 +69749,7 @@ GameObject:
   - component: {fileID: 477952896}
   - component: {fileID: 477952895}
   - component: {fileID: 477952897}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Sides
   m_TagString: Sides
   m_Icon: {fileID: 0}
@@ -70419,7 +70434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 693041457}
   - component: {fileID: 693041456}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70454,6 +70469,37 @@ Transform:
   - {fileID: 347233800}
   - {fileID: 477952890}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &919565247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919565248}
+  m_Layer: 0
+  m_Name: EdgeDetection
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &919565248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919565247}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409405658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1122820864
 GameObject:
@@ -70816,8 +70862,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.017012468, y: -0.087892875}
-  m_Size: {x: 0.9546423, y: 0.30253038}
+  m_Offset: {x: 0.2155574, y: -0.06128625}
+  m_Size: {x: 0.4336361, y: 0.3533317}
   m_Direction: 1
 --- !u!1 &1752857946
 GameObject:
@@ -71065,6 +71111,7 @@ GameObject:
   - component: {fileID: 1856083378}
   - component: {fileID: 1856083383}
   - component: {fileID: 1856083384}
+  - component: {fileID: 1856083385}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -71213,14 +71260,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856083377}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 65, y: -16.5, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1672466983}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1856083383
 Rigidbody2D:
   serializedVersion: 4
@@ -71262,12 +71309,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightSideDetectionRange: 5
   leftSideDetectionRange: 5
-  bottomSideDetectionRange: 5
   rightPlayerDetectionRange: 15
   leftPlayerDetectionRange: 15
-  groundLayer:
+  sidesLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
+  edgeDetection: {fileID: 0}
+  smoothTime: 0.1
+--- !u!114 &1856083385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856083377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a56436647e1e048a2f288c96fff10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1956582217
 GameObject:
   m_ObjectHideFlags: 0
