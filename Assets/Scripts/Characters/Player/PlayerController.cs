@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public bool IsDashing { get; private set; } = false;
     public bool DashOn { get; private set; } = false;
 
+    private bool isDeathAnimationPlayed = false;
+
     private float targetVelocityX = 0f;
     private float smoothTime = 0.1f;
     private Vector2 velocity = Vector2.zero;
@@ -35,6 +37,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (player.IsDead)
+        {
+            if (!isDeathAnimationPlayed) 
+            {
+                animationController.EffectDeathAnimation();
+                isDeathAnimationPlayed = true;
+                rb.bodyType = RigidbodyType2D.Static;
+            }
+        }
+
         transform.eulerAngles = playerRotaion;
         HandleMovement();
 
@@ -80,8 +92,6 @@ public class PlayerController : MonoBehaviour
         if (!IsGrounded || IsDashing) return;
 
         rb.velocity = new Vector2(rb.velocity.x, player.jumpHeight);
-        // rb.AddForce(new Vector2(rb.velocity.x, player.jumpHeight), ForceMode2D.Impulse);
-        // IsGrounded = false;
     }
 
     public void Dash()

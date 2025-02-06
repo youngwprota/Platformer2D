@@ -12,4 +12,14 @@ public class AnimController : MonoBehaviour
     {
         animator.SetInteger("xVelocity", xMove);
     }
+
+    public void EffectAttackAnimation()
+    {
+        animator.SetTrigger("OnPlayer");
+    }
+
+    public void EffectDeathAnimation()
+    {
+        animator.SetTrigger("isDead");
+    }
 }

@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Goblin : Character
 {
-    public override void TakeDamage(float dagame)
+    public override void TakeDamage(float dmg)
     {
         if (IsDead)
             return;
 
-        health -= damage;
+        health -= dmg;
         if (health <= 0)
             IsDead = true;
 

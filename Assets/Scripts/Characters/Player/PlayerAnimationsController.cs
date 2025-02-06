@@ -7,7 +7,6 @@ public class PlayerAnimationsController : MonoBehaviour
 {
     private Animator animator;
     private int lastAttackIndex = 0;
-
     public void Awake()
     {
         animator = GetComponent<Animator>();
@@ -34,6 +33,15 @@ public class PlayerAnimationsController : MonoBehaviour
     public void EffectDashAnimation()
     {
         animator.SetTrigger("Dash");
+    }
+
+    public void EffectDeathAnimation()
+    {
+        animator.SetTrigger("isDead");
+    }
+    public void StopAllAnimations()
+    {
+        GetComponent<Animator>().enabled = false; 
     }
 
 }
