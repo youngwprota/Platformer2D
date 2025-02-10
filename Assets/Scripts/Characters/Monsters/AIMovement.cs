@@ -31,12 +31,14 @@ public class AIMovement : MonoBehaviour
     private Vector2 velocity = Vector2.zero;
     private AnimController animControler;
     private bool isDeathAnimationPlayed = false;
+    private SpriteRenderer sprite;
 
     void Start()
     {
         characterScript = GetComponent<Character>();
         rb = GetComponent<Rigidbody2D>();
         animControler = GetComponent<AnimController>();
+        sprite = GetComponent<SpriteRenderer>();
         movingRight = true;
     }
 
@@ -127,7 +129,7 @@ public class AIMovement : MonoBehaviour
 
     private void MoveRight()
     {
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        sprite.flipX = !movingRight;
         rb.velocity = new Vector2(
             Mathf.SmoothDamp(rb.velocity.x, characterScript.speed, ref velocity.x, smoothTime),
             rb.velocity.y
@@ -138,7 +140,7 @@ public class AIMovement : MonoBehaviour
 
     private void MoveLeft()
     {
-        transform.rotation = Quaternion.Euler(0, 180, 0);
+        sprite.flipX = !movingRight;
         rb.velocity = new Vector2(
             Mathf.SmoothDamp(rb.velocity.x, -characterScript.speed, ref velocity.x, smoothTime),
             rb.velocity.y

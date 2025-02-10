@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     private Player player;
     private Rigidbody2D rb;
     private PlayerAnimationsController animationController;
-    private Vector3 playerRotaion;
+    private SpriteRenderer playerImage;
+    private bool flip = false;
+
 
     public bool IsGrounded { get; private set; } = true;
     public bool MoveX { get; private set; } = false;
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         animationController = GetComponent<PlayerAnimationsController>();
-        playerRotaion = new Vector3(0, 0, 0);
+        playerImage = GetComponent<SpriteRenderer>();
         IsGrounded = true;
     }
 
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        transform.eulerAngles = playerRotaion;
+        playerImage.flipX = flip;
         HandleMovement();
 
         if (Input.GetKeyDown(attack))
@@ -68,11 +70,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(moveForward))
         {
             targetVelocityX = player.speed;
-            playerRotaion = new Vector3(0, 0, 0);
+            flip = false;
         }
         else if (Input.GetKey(moveBackward))
         {
-            playerRotaion = new Vector3(0, 180, 0);
+            flip = true;
             targetVelocityX = -player.speed;
         }
         else
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
         IsDashing = true;
         DashOn = true;
-        int direction = (playerRotaion == Vector3.zero) ? 1 : -1;
+        int direction = flip ? -1 : 1;
 
         rb.velocity = new Vector2(player.dashValue * direction, 0);
         animationController.EffectDashAnimation();
