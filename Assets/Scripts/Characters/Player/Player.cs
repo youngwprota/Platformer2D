@@ -7,7 +7,6 @@ public class Player : Character
     public float jumpHeight;
     public float dashCooldown;
     public float dashValue;
-
     public override void TakeDamage(float dmg)
     {
         if (IsDead)

@@ -21,10 +21,20 @@ public class WeaponController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out IDamagable target) && other != characterCollider)
+        if (other.TryGetComponent(out Character target) && other != characterCollider)
         {
+            if (target.IsDead)
+            {
+                return;
+            }
+
             Debug.Log("Detected: " + other.name);
+
             target.TakeDamage(damage);
+            if (target.IsDead)
+            {
+                characterScript.countKills += 1;
+            }
         }
     }
 }
