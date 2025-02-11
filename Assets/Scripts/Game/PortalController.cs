@@ -13,8 +13,10 @@ public class PortalController : MonoBehaviour
     {
         if (other.TryGetComponent(out Player player))
         {
-            Debug.LogError("Level done!");
-            // SceneManager.LoadScene("Level2");
+            if (SceneManager.GetActiveScene().name == "Level1")
+                SceneManager.LoadScene("Level2");
+            if (SceneManager.GetActiveScene().name == "Level2")
+                SceneManager.LoadScene("End");
         }
     }
 }
